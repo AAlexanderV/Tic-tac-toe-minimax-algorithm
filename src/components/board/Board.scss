@@ -1,0 +1,97 @@
+.Board {
+  margin: auto;
+  width: 600px;
+  aspect-ratio: 1/1;
+
+  display: grid;
+  flex-shrink: 1;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  .wait {
+    cursor: wait;
+    z-index: 100;
+  }
+
+  .BoardCell {
+    border: 8px solid;
+    border-color: #ffffff00;
+  }
+
+  .number-1,
+  .number-2,
+  .number-4,
+  .number-5 {
+    border-right-color: #64646452;
+    border-bottom-color: #64646452;
+  }
+
+  .number-3,
+  .number-6 {
+    border-bottom-color: #64646452;
+  }
+
+  .number-7,
+  .number-8 {
+    border-right-color: #64646452;
+  }
+
+  @keyframes value_animation {
+    from {
+      scale: 0%;
+    }
+    to {
+      scale: 100%;
+    }
+  }
+
+  .value-x {
+    position: relative;
+
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      width: 90%;
+      height: 14px;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      background-color: rgb(84, 84, 84);
+      transform-origin: center;
+
+      animation-name: value_animation;
+      animation-duration: 0.5s;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  .value-o {
+    position: relative;
+
+    &:before {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 65%;
+      height: 65%;
+      content: "";
+      border: 14px solid rgb(232, 230, 205);
+      border-radius: 50%;
+
+      animation-name: value_animation;
+      animation-duration: 0.5s;
+    }
+  }
+}

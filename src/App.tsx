@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { useState } from "react";
+
+import GameField from "./components/gameField/GameField";
 
 function App() {
+  const [currentCombination, setCurrentCombination] = useState<string>("---------");
+  const [winner, setWinner] = useState<string | null>(null);
+  const [isDraw, setDraw] = useState<boolean>(false);
+
+  const [playerScore, setplayerScore] = useState(0);
+  const [AIScore, setAIScore] = useState(0);
+  const [drawScore, setDrawScore] = useState(0);
+
+  const [playerMovesFirst, setplayerMovesFirst] = useState(true);
+  // const [playerMovesFirst, setplayerMovesFirst] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <GameField
+        playerMovesFirst={playerMovesFirst}
+        currentCombination={currentCombination}
+        setCurrentCombination={setCurrentCombination}
+      />
     </div>
   );
 }
