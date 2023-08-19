@@ -14,34 +14,28 @@ function GameField({ playerMovesFirst, setplayerMovesFirst, difficulty }: GameFi
   const [playerCanMove, setPlayerCanMove] = useState<boolean>(true);
   const [winCombination, setWinCombination] = useState<Array<number> | null>(null);
 
-  const setScore = useCallback(
-    (winner: string | null) => {
-      switch (winner) {
-        case "AI":
-          setAIScore(AIScore + 1);
-          break;
-        case "player":
-          setplayerScore(playerScore + 1);
-          break;
-        case "draw":
-          setDrawScore(drawScore + 1);
-          break;
-        default:
-          break;
-      }
-    },
-    [AIScore, playerScore, drawScore]
-  );
+  function setScore(winner: string | null) {
+    switch (winner) {
+      case "AI":
+        setAIScore(AIScore + 1);
+        break;
+      case "player":
+        setplayerScore(playerScore + 1);
+        break;
+      case "draw":
+        setDrawScore(drawScore + 1);
+        break;
+      default:
+        break;
+    }
+  }
 
-  const gameOver = useCallback(
-    (gameStatus: GameStatus) => {
-      setWinner(gameStatus.winner);
-      setScore(gameStatus.winner);
-      setWinCombination(gameStatus.winCombination);
-      setPlayerCanMove(false);
-    },
-    [setScore]
-  );
+  function gameOver(gameStatus: GameStatus) {
+    setWinner(gameStatus.winner);
+    setScore(gameStatus.winner);
+    setWinCombination(gameStatus.winCombination);
+    setPlayerCanMove(false);
+  }
 
   function restart() {
     setCurrentCombination("---------");

@@ -1,3 +1,3 @@
 # Tic-Tac-Toe
 
-Live site:
+Live site: https://tic-tac-toe-minimax-algorithm.netlify.app/

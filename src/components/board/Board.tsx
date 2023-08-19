@@ -26,8 +26,10 @@ function Board({
       console.log("GAME OVER");
       gameOver(gameStatus);
     }
-    // }, [currentCombination, gameOver]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCombination]);
+  // }, [currentCombination, gameOver]);
 
   function playerMove(cellIndex: number) {
     const newCombination = currentCombination
