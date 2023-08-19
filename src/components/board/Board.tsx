@@ -26,7 +26,8 @@ function Board({
       console.log("GAME OVER");
       gameOver(gameStatus);
     }
-  }, [currentCombination, gameOver]);
+    // }, [currentCombination, gameOver]);
+  }, [currentCombination]);
 
   function playerMove(cellIndex: number) {
     const newCombination = currentCombination
