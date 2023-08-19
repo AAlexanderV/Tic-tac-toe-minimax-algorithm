@@ -1,0 +1,83 @@
+.Board {
+  margin: auto;
+  width: 600px;
+  aspect-ratio: 1/1;
+  display: grid;
+  flex-shrink: 1;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.Board .wait {
+  cursor: wait;
+  z-index: 100;
+}
+.Board .BoardCell {
+  border: 8px solid;
+  border-color: rgba(255, 255, 255, 0);
+  transition: all 0.9s linear;
+}
+.Board .number-1,
+.Board .number-2,
+.Board .number-4,
+.Board .number-5 {
+  border-right-color: rgba(100, 100, 100, 0.3215686275);
+  border-bottom-color: rgba(100, 100, 100, 0.3215686275);
+}
+.Board .number-3,
+.Board .number-6 {
+  border-bottom-color: rgba(100, 100, 100, 0.3215686275);
+}
+.Board .number-7,
+.Board .number-8 {
+  border-right-color: rgba(100, 100, 100, 0.3215686275);
+}
+@keyframes value_animation {
+  from {
+    scale: 0%;
+  }
+  to {
+    scale: 100%;
+  }
+}
+.Board .value-x {
+  position: relative;
+}
+.Board .value-x:after, .Board .value-x:before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  height: 14px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgb(84, 84, 84);
+  transform-origin: center;
+  animation-name: value_animation;
+  animation-duration: 0.5s;
+}
+.Board .value-x:before {
+  transform: rotate(45deg);
+}
+.Board .value-x:after {
+  transform: rotate(-45deg);
+}
+.Board .value-o {
+  position: relative;
+}
+.Board .value-o:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 65%;
+  height: 65%;
+  content: "";
+  border: 14px solid rgb(232, 230, 205);
+  border-radius: 50%;
+  animation-name: value_animation;
+  animation-duration: 0.5s;
+}/*# sourceMappingURL=Board.css.map */

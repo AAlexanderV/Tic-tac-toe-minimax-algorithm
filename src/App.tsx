@@ -1,26 +1,24 @@
 import "./App.scss";
 import { useState } from "react";
-
 import GameField from "./components/gameField/GameField";
+import ControlPanel from "./components/controlPanel/ControlPanel";
 
 function App() {
-  const [currentCombination, setCurrentCombination] = useState<string>("---------");
-  const [winner, setWinner] = useState<string | null>(null);
-  const [isDraw, setDraw] = useState<boolean>(false);
-
-  const [playerScore, setplayerScore] = useState(0);
-  const [AIScore, setAIScore] = useState(0);
-  const [drawScore, setDrawScore] = useState(0);
-
-  const [playerMovesFirst, setplayerMovesFirst] = useState(true);
-  // const [playerMovesFirst, setplayerMovesFirst] = useState(false);
+  const [playerMovesFirst, setplayerMovesFirst] = useState<boolean>(true);
+  const [difficulty, setDifficulty] = useState<string>("medium");
 
   return (
     <div className="App">
       <GameField
         playerMovesFirst={playerMovesFirst}
-        currentCombination={currentCombination}
-        setCurrentCombination={setCurrentCombination}
+        setplayerMovesFirst={setplayerMovesFirst}
+        difficulty={difficulty}
+      />
+      <ControlPanel
+        playerMovesFirst={playerMovesFirst}
+        setplayerMovesFirst={setplayerMovesFirst}
+        difficulty={difficulty}
+        setDifficulty={setDifficulty}
       />
     </div>
   );

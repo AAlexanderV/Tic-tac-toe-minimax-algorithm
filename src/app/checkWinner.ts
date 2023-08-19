@@ -9,9 +9,13 @@ const winCombs = [
   [2, 4, 6],
 ];
 
-export function checkWinner(combination: string) {
+export function checkWinner(combination: string): {
+  winner: null | string;
+  winCombination: null | Array<number>;
+} {
   const arrCombination = combination.split("");
   let winner = null;
+  let winCombination = null;
 
   // check for draw
   let allCellsFull = true;
@@ -28,8 +32,9 @@ export function checkWinner(combination: string) {
       arrCombination[winCombs[i][1]] === arrCombination[winCombs[i][2]]
     ) {
       winner = arrCombination[winCombs[i][0]] === "o" ? "AI" : "player";
+      winCombination = winCombs[i];
     }
   }
 
-  return winner;
+  return { winner, winCombination };
 }

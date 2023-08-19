@@ -1,6 +1,12 @@
 import { checkWinner } from "./checkWinner";
 
-export function bestMove(combination: string): string {
+export function bestMove(combination: string, difficulty: string): string {
+  const difficultyMap: { [key: string]: number } = {
+    low: 5,
+    medium: 6,
+    god: 7,
+  };
+
   const combinationArray = combination.split("");
 
   let bestScore = -Infinity;
@@ -8,30 +14,31 @@ export function bestMove(combination: string): string {
 
   for (let i = 0; i < 9; i++) {
     if (combinationArray[i] === "-") {
+      console.log("CELL: ", i);
+
       combinationArray[i] = "o";
-      let score = minimax(combinationArray, 0, false);
+      let score = minimax(combinationArray, difficultyMap[difficulty], false);
       combinationArray[i] = "-";
 
       if (score > bestScore) {
         bestScore = score;
         bestMove = i;
       }
+
+      console.log("score: ", score);
     }
   }
 
-  if (bestMove === null) {
-    return randomMove(combination);
-  }
+  if (bestScore === Infinity || bestMove === null) return randomMove(combination);
 
   combinationArray[bestMove] = "o";
 
   return combinationArray.join("");
 }
 
-////
 // randomMove
 export function randomMove(combination: string): string {
-  console.log("randomMove");
+  console.log("random move");
 
   const combinationArray = combination.split("");
 
@@ -50,43 +57,47 @@ export function randomMove(combination: string): string {
 ////
 // NO EXPORT
 const scores: { [key: string]: number } = {
-  AI: 1,
-  player: -1,
+  AI: 100,
+  player: -100,
   draw: 0,
 };
 ////
 // NO EXPORT
-function minimax(combinationArray: Array<string>, depth = 0, isMaximising: boolean): number {
+function minimax(combinationArray: Array<string>, depth: number, isMaximising: boolean): number {
   let result = checkWinner(combinationArray.join(""));
-  console.log("checkWinner: ", result);
 
-  if (result !== null) return scores[result];
+  if (result.winner !== null) {
+    return scores[result.winner] * depth;
+  }
+
+  if (depth <= 1) return isMaximising ? -Infinity : Infinity;
 
   if (isMaximising) {
-    let bestScore = -Infinity;
+    let bestScore: number = -Infinity;
 
     for (let i = 0; i < 9; i++) {
       if (combinationArray[i] === "-") {
         combinationArray[i] = "o";
-        let score = minimax(combinationArray, 0, false);
+        let score = minimax(combinationArray, depth - 1, false);
         combinationArray[i] = "-";
 
         bestScore = Math.max(score, bestScore);
       }
     }
-    return bestScore;
+
+    return bestScore / depth;
   } else {
-    let bestScore = Infinity;
+    let bestScore: number | null = Infinity;
 
     for (let i = 0; i < 9; i++) {
       if (combinationArray[i] === "-") {
         combinationArray[i] = "x";
-        let score = minimax(combinationArray, 0, true);
+        let score = minimax(combinationArray, depth - 1, true);
         combinationArray[i] = "-";
-
         bestScore = Math.min(score, bestScore);
       }
     }
-    return bestScore;
+
+    return bestScore * depth;
   }
 }

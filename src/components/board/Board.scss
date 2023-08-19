@@ -16,24 +16,21 @@
   .BoardCell {
     border: 8px solid;
     border-color: #ffffff00;
+    transition: all 0.9s linear;
   }
 
-  .number-1,
-  .number-2,
   .number-4,
-  .number-5 {
-    border-right-color: #64646452;
-    border-bottom-color: #64646452;
-  }
-
-  .number-3,
+  .number-5,
   .number-6 {
+    border-top-color: #64646452;
     border-bottom-color: #64646452;
   }
 
-  .number-7,
+  .number-2,
+  .number-5,
   .number-8 {
     border-right-color: #64646452;
+    border-left-color: #64646452;
   }
 
   @keyframes value_animation {
