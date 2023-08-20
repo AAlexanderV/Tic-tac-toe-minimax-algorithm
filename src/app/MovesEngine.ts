@@ -61,8 +61,7 @@ const scores: { [key: string]: number } = {
   player: -100,
   draw: 0,
 };
-////
-// NO EXPORT
+
 function minimax(combinationArray: Array<string>, depth: number, isMaximising: boolean): number {
   let result = checkWinner(combinationArray.join(""));
 

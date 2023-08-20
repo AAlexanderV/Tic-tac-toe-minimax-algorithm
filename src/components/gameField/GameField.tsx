@@ -31,10 +31,13 @@ function GameField({ playerMovesFirst, setplayerMovesFirst, difficulty }: GameFi
   }
 
   function gameOver(gameStatus: GameStatus) {
-    setWinner(gameStatus.winner);
-    setScore(gameStatus.winner);
     setWinCombination(gameStatus.winCombination);
     setPlayerCanMove(false);
+    setScore(gameStatus.winner);
+
+    setTimeout(() => {
+      setWinner(gameStatus.winner);
+    }, 1500);
   }
 
   function restart() {
