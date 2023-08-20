@@ -1,5 +1,5 @@
 import "./GameField.scss";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { GameFieldProps, GameStatus } from "../../types";
 import Board from "../board/Board";
 import GameOverModal from "../gameOverModal/GameOverModal";
